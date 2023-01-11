@@ -1,24 +1,17 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useForm } from '../hooks/useForm';
 import { Message } from './Message';
 
 export const FormCustomHook = () => {
 
-    const [formState, setFormState] = useState({
-        username: '',
-        email: '',
-        password: ''
-    });
+  const {username, email, password, onInputChange, onInputReset} = useForm( {
 
-    const {username, email, password} = formState;
+    username: '',
+    email: '',
+    password: ''
 
-    const onInputChange = ({target}) => {
-        const {name, value } = target;
-        setFormState({
-          ...formState,
-          [name]: value
-        })
-    };
+  });
 
 
   return (
@@ -50,7 +43,10 @@ export const FormCustomHook = () => {
         placeholder='Contrasena' 
         name='password' 
         value={password}
-        onChange={onInputChange}/>
+        onChange={onInputChange}/> 
+
+        <button onClick={onInputReset} className='btn btn-primary mt-2'>Reset</button>
+
 
     </>
   )
