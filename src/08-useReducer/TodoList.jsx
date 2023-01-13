@@ -1,6 +1,6 @@
 
 
-export const TodoList = ({todos = [], onDeleteTodo}) => {
+export const TodoList = ({todos = [], onDeleteTodo, onToggleTodo}) => {
     
   return (
 
@@ -8,7 +8,7 @@ export const TodoList = ({todos = [], onDeleteTodo}) => {
     {
     todos.map(todo => (                    
         <li key={todo.id} className="list-group-item d-flex justify-content-between">
-        <span className="align-self-center">{todo.description}</span>
+        <span className={`align-self-center ${(todo.done) ? 'text-decoration-line-through' : ''}`} onClick={() => onToggleTodo(todo.id)}>{todo.description}</span>
         <button className="btn btn-danger" onClick={() => onDeleteTodo(todo.id)}>X</button>
         </li>
         ))
